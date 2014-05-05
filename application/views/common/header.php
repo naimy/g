@@ -25,6 +25,7 @@
         echo $tsstatus->render();*/
 	?>
 	</div>
+	TEST
 		<div id="site_title">
 			<h1><?php echo $title; ?></h1>
 		</div>
