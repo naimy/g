@@ -5,24 +5,20 @@
 <META http-equiv="Content-Script-Type" content="type">
 <title>Serveur G</title>
 
-<link href="<?php echo site_url() ?>public/css/templatemo_style.css" rel="stylesheet" type="text/css" />
-<link href="<?php echo site_url() ?>public/css/global.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" media="print" href="<?php echo site_url() ?>public/css/print.css" />
+<link href="<?php echo site_url() ?>public/css/templatemo_style.css"
+	rel="stylesheet" type="text/css" />
+<link href="<?php echo site_url() ?>public/css/global.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" media="print"
+	href="<?php echo site_url() ?>public/css/print.css" />
 </head>
 <body>
 	<div id="templatemo_wrapper">
-	<div id="ts3Viewer">
+		<div id="ts3Viewer">
 	<?php
-        /*require_once("/var/www/G/ts3/tsstatus/tsstatus.php");
-        $tsstatus = new TSStatus("192.168.1.13", 10011);
-        $tsstatus->useServerPort(9987);
-        $tsstatus->imagePath = "/G/ts3/tsstatus/img/";
-        $tsstatus->timeout = 2;
-        $tsstatus->hideEmptyChannels = false;
-        $tsstatus->hideParentChannels = false;
-        $tsstatus->showNicknameBox = true;
-        $tsstatus->showPasswordBox = false;
-        echo $tsstatus->render();*/
+	/*
+	 * require_once("/var/www/G/ts3/tsstatus/tsstatus.php"); $tsstatus = new TSStatus("192.168.1.13", 10011); $tsstatus->useServerPort(9987); $tsstatus->imagePath = "/G/ts3/tsstatus/img/"; $tsstatus->timeout = 2; $tsstatus->hideEmptyChannels = false; $tsstatus->hideParentChannels = false; $tsstatus->showNicknameBox = true; $tsstatus->showPasswordBox = false; echo $tsstatus->render();
+	 */
 	?>
 	</div>
 		<div id="site_title">
@@ -30,26 +26,32 @@
 		</div>
 		<div id="templatemo_header">
 			<div id="templatemo_menu">
-			<div class="auth">
+				<div class="auth">
 			<?php if($connexion == false){ ?>
 			<form method="POST" action="<?php echo site_url() ?>index.php/login">
-			<ul>
-				<li><input type="text" name="login" class="login" placeholder="Login" /><input type="password" name="password" class="pawd" placeholder="password" /><input type="submit" class="learn_more"/></li>
-			</ul>
-			</form>
+						<ul>
+							<li><input type="text" name="login" class="login"
+								placeholder="Login" /><input type="password" name="password"
+								class="pawd" placeholder="password" /><input type="submit"
+								class="learn_more" /></li>
+						</ul>
+					</form>
 			<?php }else{?>
 				<span id="pseudo" class="hidden"><?php echo $_SESSION['pseudo'] ?></span>
-				<div>Bienvenue <?php echo $_SESSION['name'] ?> Groupe <?php echo $_SESSION['acces'] ?>
+					<div>
+						Bienvenue <span id="nom"><?php echo $_SESSION['name'] ?></span> Groupe <?php echo $_SESSION['acces']?>
 				<a href="<?php echo site_url() ?>index.php/login/logout"
-					title="deconnexion" class="logout learn_more">Deconnexion</a></div>
+							title="deconnexion" class="logout learn_more">Deconnexion</a>
+					</div>
 			<?php }?>
 		</div>
-		<ul>
+				<ul>
 			<?php foreach ( $nav as $i ) { ?>
 				<?php if($i->libelle_nav == 'Chat'){ ?>
 					<?php if($connexion){?><li class="<?php echo $i->libelle_nav; ?>"><?php echo $i->libelle_nav; ?></li><?php } ?>
 				<?php } else { ?>
-					<li><a href="<?php echo site_url().$i->link_nav; ?>"><?php echo $i->libelle_nav; ?></a>	</li>
+					<li><a href="<?php echo site_url().$i->link_nav; ?>"><?php echo $i->libelle_nav; ?></a>
+					</li>
 				<?php } ?>
 
 			<?php }; ?>
@@ -57,15 +59,33 @@
 			</div>
 			<div class="cleaner"></div>
 		</div>
-		<div id="chat" class="hidden">
-			<div id="onConnect"></div>
-			<div id="onServerUpdate"></div>
-			<div id="logged"></div>
-			<div id="tchatContent"></div>
+		<div class="connectionContainer">
+			<div class="content">
+				<div>
+					<label><span>Server :</span> <input class="serverURL" value="" /></label>
+				</div>
+				<div>
+					<label><span>Login :</span> <input class="login" /></label>
+				</div>
+				<div>
+					<button class="connectionTrigger">Connection</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="tchatContainer">
 			<div>
-				<form id="sendMessage">
-					<input id="saySomething"/>
-				</form>
+				<button class="disconnectTrigger">Disconnect</button>
+			</div>
+			<div class="mainPanel">
+				<div class="userList"></div>
+
+				<div class="messageContainer"></div>
+			</div>
+
+			<div>
+				<input class="input" />
 			</div>
 		</div>
 		<?php if( isset($_GET['error']) && $_GET['error'] == 1){?>
@@ -74,12 +94,8 @@
 		<!-- end of middle -->
 		<div id="templatemo_main">
 		<?php if( isset($_GET['error']) && $_GET['error'] == 1){?>
-		<div class="error">
-			Erreur sur la modification
-			</div>
+		<div class="error">Erreur sur la modification</div>
 		<?php } ?>
 		<?php if( isset($_GET['sucess']) && $_GET['sucess'] == 1){?>
-			<div class="success">
-				Modifications effectués
-			</div>
+			<div class="success">Modifications effectués</div>
 		<?php } ?>

@@ -128,7 +128,7 @@ a[data-wysihtml5-command-value="blue"] {
 #chat {
 	background-color: #4F4744;
 	width: 100%;
-	height: 550px;
+	height: 573px;
 	float: left;
 	position: absolute;
 	width: 633px;
@@ -149,7 +149,7 @@ a[data-wysihtml5-command-value="blue"] {
 	margin-left:2px;
 }
 
-#tchatContent {
+.messageContainer {
 	background-color: #FFFFFF;
 	color: #000000;
 	float: left;
@@ -158,6 +158,7 @@ a[data-wysihtml5-command-value="blue"] {
 	width: 457px;
 	margin-top:2px;
 	margin-left:2px;
+	overflow: auto;
 }
 
 #saySomething {
