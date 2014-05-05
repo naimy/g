@@ -35,6 +35,6 @@ echo shell_exec('ls -A | grep ts3server_linux');
 	}
 ?>
 <h2 class="maT10">Transmission :</h2>
-<iframe src="http://192.168.1.13:9091" width="100%" height="500">
+<iframe src="<?php echo $adress[1]->value; ?>" width="100%" height="500">
   <p>Votre navigateur ne supporte pas l'élément iframe</p>
 </iframe>
