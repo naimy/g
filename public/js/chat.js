@@ -8,7 +8,7 @@ jQuery(function() {
 		});
 	});
 
-	var url='ws://naimy.serveftp.com:8000/server';
+	var url='ws://172.21.9.52:8000/greentchat';
 	var pseudo= $('#pseudo').html;
 	socket=initializeSocket(url);
 
@@ -27,14 +27,24 @@ function sendMessage(socket, value) {
 	socket.send(value);
 }
 
+function timeConverter(UNIX_timestamp){
+	 var a = new Date(UNIX_timestamp*1000);
+	 var months = ['Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre'];
+	     var year = a.getFullYear();
+	     var month = months[a.getMonth()];
+	     var date = a.getDate();
+	     var hour = a.getHours();
+	     var min = a.getMinutes();
+	     var sec = a.getSeconds();
+	     var time = date+' '+month+' '+year+' '+hour+':'+min+':'+sec ;
+	     return time;
+	 }
+
 function initializeSocket(url) {
 
 	var socket=new WebSocket(url);
 
 	socket.onmessage=function(serverData) {
-
-		console.debug(serverData.data);
-
 
 		//on transforme la chaine de caractère json renvoyée par le serveur en objet
 		var data=JSON.parse(serverData.data);
@@ -42,7 +52,6 @@ function initializeSocket(url) {
 
 		//gestion de l'event connection
 		if(data.messageType=='connection') {
-			console.log(data.content);
 			jQuery('#logged').empty();
 			for(var i=0; i<data.content.length; i++) {
 				jQuery('#logged').append('<div class="list">'+data.content[i]+'</div>');
@@ -50,7 +59,10 @@ function initializeSocket(url) {
 		}
 		//gestion de l'event "time"
 		else if(data.messageType=='time') {
-			jQuery('#onServerUpdate').html(data.content);
+
+			formattedTime = timeConverter(data.content);
+
+			jQuery('#onServerUpdate').html(formattedTime);
 		}
 		//gestion de l'event "message"
 		else if(data.messageType=='message') {

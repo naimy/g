@@ -25,7 +25,7 @@ class Message
 				'channel'=>$this->channel,
 				'type'=>$this->type,
 				'data'=>$this->data,
-				'time'=>time()
+				'time'=> date("Y-m-d",time())
 			)
 		);
 	}
