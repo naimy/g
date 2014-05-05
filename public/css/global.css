@@ -258,3 +258,8 @@ a[data-wysihtml5-command-value="blue"] {
 .info a {
 	color: #205791;
 }
+
+#listOfServerFonctinnality li label{
+	min-width:250px;
+	display:inline-block;
+}
