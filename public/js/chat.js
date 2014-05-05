@@ -8,7 +8,7 @@ jQuery(function() {
 		});
 	});
 
-	var url='ws://172.21.9.52:8000/greentchat';
+	var url='ws://192.168.1.13:8000/greentchat';
 	var pseudo= $('#pseudo').html;
 	socket=initializeSocket(url);
 
