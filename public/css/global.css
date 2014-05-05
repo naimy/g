@@ -263,3 +263,8 @@ a[data-wysihtml5-command-value="blue"] {
 	min-width:250px;
 	display:inline-block;
 }
+
+#listOfServerFonctinnality li input[type=text]{
+	min-width:250px;
+	display:inline-block;
+}

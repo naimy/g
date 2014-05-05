@@ -37,13 +37,15 @@ class Site extends CI_Controller {
         try {
             $responses = $this->nav_model->getNav ();
             $title = $this->config_model->getTitle ();
+            $adresse = $this->config_model->getAdress ();
         } catch ( Exception $exception ) {
         }
 
         $data = array (
             'connexion' => $connexion,
             'nav' => $responses,
-            'title' => $title[0]->title
+            'title' => $title[0]->title,
+        	'adress' => $adresse
         );
 
         $dataSite = array (
