@@ -59,34 +59,11 @@
 			</div>
 			<div class="cleaner"></div>
 		</div>
-		<div class="connectionContainer">
-			<div class="content">
-				<div>
-					<label><span>Server :</span> <input class="serverURL" value="" /></label>
-				</div>
-				<div>
-					<label><span>Login :</span> <input class="login" /></label>
-				</div>
-				<div>
-					<button class="connectionTrigger">Connection</button>
-				</div>
-			</div>
-		</div>
-
-
 		<div class="tchatContainer">
-			<div>
-				<button class="disconnectTrigger">Disconnect</button>
-			</div>
-			<div class="mainPanel">
-				<div class="userList"></div>
-
-				<div class="messageContainer"></div>
-			</div>
-
-			<div>
-				<input class="input" />
-			</div>
+			<form id="input" style="display:none">
+				<input/>
+			</form>
+			<div id="content"></div>
 		</div>
 		<?php if( isset($_GET['error']) && $_GET['error'] == 1){?>
 			<div class="error">Erreur de connexion, verifier vos identifiants</div>

@@ -16,10 +16,9 @@
 <script src="<?php echo site_url() ?>public/js/advanced.js"></script>
 <script src="<?php echo site_url() ?>public/js/wysihtml5.js"></script>
 <?php if($connexion == TRUE){ ?>
-<script src="<?php echo site_url() ?>public/js/chat.js"></script>
-<script src="<?php echo site_url() ?>public/js/user.js"></script>
 <script src="<?php echo site_url() ?>public/js/client.js"></script>
 <script src="<?php echo site_url() ?>public/js/message.js"></script>
+<script src="<?php echo site_url() ?>public/js/chat.js"></script>
 <?php } ?>
 </body>
 </html>
