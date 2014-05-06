@@ -4,23 +4,8 @@ if (! defined ( 'BASEPATH' ))
     exit ( 'No direct script access allowed' );
 class Site extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * http://example.com/index.php/welcome
-     * - or -
-     * http://example.com/index.php/welcome/index
-     * - or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     *
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
     public function index() {
+
         session_start ();
         $this->load->helper ( 'url' );
         $this->load->database ();
@@ -55,6 +40,26 @@ class Site extends CI_Controller {
         $this->load->view ( 'common/header', $data );
         $this->load->view ( 'site', $dataSite );
         $this->load->view ( 'common/footer');
+
+    }
+
+    public function updateInfo() {
+
+    	$this->load->helper ( 'url' );
+    	$baseurl = site_url ();
+    	$this->load->database ();
+		$data = array (
+				"adresse_Ts" => $_POST ['ts3'],
+				"adresse_Webmin" => $_POST ['webmin'],
+				"adresse_Plex" => $_POST ['plex'],
+				"adresse_Transmission" => $_POST ['transmission'],
+				"adresse_Server" => $_POST ['server']
+		);
+		$this->load->database ();
+		$this->load->model('config_model');
+		$this->config_model->updateData($data);
+		header ( 'Location:' . $baseurl . "index.php/site?sucess=1" );
+
     }
 }
 
