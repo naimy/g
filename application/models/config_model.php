@@ -17,6 +17,12 @@ class config_model extends CI_Model {
         $query = $this->db->query ("UPDATE config SET title = '$value' WHERE id_config = 1");
     }
 
+    function getAllConfig() {
+    	$query = $this->db->query ("select * from config");
+    	$result = $query->result ();
+    	return $result;
+    }
+
     function updateData($data) {
     	var_dump($data);
 

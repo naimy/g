@@ -36,11 +36,11 @@ class Server extends CI_Controller {
 		{
             $this->load->model ( 'nav_model' );
             $this->load->model ( 'config_model' );
-
             try {
-                $responses = $this->nav_model->getNav ();
-                $title = $this->config_model->getTitle ();
-                $adresse = $this->config_model->getAdress ();
+                $responses = $this->nav_model->getNav();
+                $title = $this->config_model->getTitle();
+                $adresse = $this->config_model->getAdress();
+                $config = $this->config_model->getAllConfig();
             } catch ( Exception $exception ) {
             }
 
@@ -48,7 +48,12 @@ class Server extends CI_Controller {
                 'connexion' => $connexion,
                 'nav' => $responses,
                 'title' => $title[0]->title,
-            	'adress' => $adresse
+            	'adress' => $adresse,
+            	'adresse_Ts' => $config[1]->value,
+            	'adresse_Webmin' => $config[2]->value,
+            	'adresse_Plex' => $config[3]->value,
+            	'adresse_Transmission' => $config[4]->value,
+            	'adresse_Server' => $config[5]->value
             );
 
 			$this->load->view ( 'common/header', $data );

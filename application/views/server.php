@@ -1,9 +1,4 @@
 <h1>Gestion du server</h1>
-<ul>
-	<li>Ts3</li>
-	<li>Transmission</li>
-	<li>Server</li>
-</ul>
 <h2 class="maT10">TS3 :</h2>
 <?php
 $output = shell_exec('ps -A | grep ts3server_linux');
@@ -35,6 +30,6 @@ echo shell_exec('ls -A | grep ts3server_linux');
 	}
 ?>
 <h2 class="maT10">Transmission :</h2>
-<iframe src="http://<?php echo $adress[1]->value; ?>" width="100%" height="500">
+<iframe src="http://<?php echo $adresse_Transmission; ?>" width="100%" height="500">
   <p>Votre navigateur ne supporte pas l'élément iframe</p>
 </iframe>
